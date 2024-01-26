@@ -20,7 +20,6 @@
   <h1>my bank</h1>
   <p>최첨단 은행 관리 시스템</p> 
 </div>
-
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <a class="navbar-brand" href="#">Menu</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
