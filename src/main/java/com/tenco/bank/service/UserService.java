@@ -4,7 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tenco.bank.dto.SignInFormDto;
 import com.tenco.bank.dto.SignUpFormDto;
+import com.tenco.bank.handler.UnAuthorizedException;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.User;
 import com.tenco.bank.repository.interfaces.UserRepository;
@@ -42,4 +44,26 @@ public class UserService {
 		}
 		
 	}
+	
+	/**
+	 * 로그인 처리
+	 * @param SignInFormDto
+	 * @return User
+	 */
+	// select 에도 트랜잭션을 걸어야하는데, 멀티쓰레드 환경에서 다수의 사용자가 접근하는 경우 
+	// 발생하는 에러(Phantom Reads) 현상을 방지하기 위해
+	public User readUser(SignInFormDto dto) {
+		User user = User.builder()
+				.username(dto.getUsername())
+				.password(dto.getPassword())
+				.build();
+		User userEntity = userRepository.findByUsernameAndPassword(user);
+		
+		if(userEntity == null) {
+			throw new UnAuthorizedException("인증된 사용자가 아닙니다.", HttpStatus.UNAUTHORIZED);
+		}
+		return userEntity;
+		
+	}
+	
 }

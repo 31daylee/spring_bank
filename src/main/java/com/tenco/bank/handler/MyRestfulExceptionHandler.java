@@ -31,4 +31,13 @@ public class MyRestfulExceptionHandler{
 		sb.append("</script>");
 		return sb.toString();
 	}
+	@ExceptionHandler(UnAuthorizedException.class)
+	public String unAuthorizedException(UnAuthorizedException e) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<script>");
+		sb.append("alert('"+e.getMessage() +"');");		
+		sb.append("location.href='/user/sign-in';");	// 이전 페이지로 돌아가기	
+		sb.append("</script>");
+		return sb.toString();
+	}
 }
