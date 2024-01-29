@@ -27,6 +27,7 @@ public class MyRestfulExceptionHandler{
 		StringBuffer sb = new StringBuffer();
 		sb.append("<script>");
 		sb.append("alert('"+e.getMessage() +"');");		
+		sb.append("window.history.back();");	// 이전 페이지로 돌아가기	
 		sb.append("</script>");
 		return sb.toString();
 	}
