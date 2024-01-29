@@ -89,9 +89,16 @@ public class UserController {
 		}
 		// 서비스 호출 
 		User user =  userService.readUser(dto);
-		httpSession.setAttribute("principal", user);
+		httpSession.setAttribute("principal", user); //principal 이란 key 값을 지님
 		
 		//TODO: account/list 페이지 완성
+		return "redirect:/user/sign-in";
+	}
+	
+	// 로그아웃 기능
+	@GetMapping("/logout")
+	public String logout() {
+		httpSession.invalidate();
 		return "redirect:/user/sign-in";
 	}
 
