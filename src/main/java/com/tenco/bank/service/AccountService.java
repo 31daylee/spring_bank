@@ -1,5 +1,7 @@
 package com.tenco.bank.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -46,4 +48,12 @@ public class AccountService {
 	public Account readAccount(String number) {
 		return accountRepository.findByNumber(number);
 	}
+	
+	// 계좌 목록 보기 가능
+	public List<Account> readAccountListByUserId(Integer principalId){
+
+		return accountRepository.findAllByUserId(principalId);
+	}
+	
+	
 }
