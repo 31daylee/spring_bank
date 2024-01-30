@@ -52,7 +52,11 @@ public class AccountController {
 		return "account/saveForm";
 	}
 	
-	// 계좌 생성 로직 만들기
+	/**
+	 * 계좌 생성
+	 * @param dto
+	 * @return /account/list.jsp
+	 */
 	@PostMapping("/save") // body -> String -> 파싱(Dto):Message Converter 방식
 	public String saveProc(AccountSaveFormDto dto) {
 		User principal = (User)session.getAttribute(Define.PRINCIPAL);
@@ -71,13 +75,15 @@ public class AccountController {
 		}
 		
 		accountService.createAccount(dto, principal.getId());
-		
-		// TODO:계좌 생성 리스트 페이지 만들기
-		return "redirect:/user/sign-in";
+		return "redirect:/account/list";
 		
 	}
-	// 계좌 목록 보기 페이지 생성
-	// http://localhost:80/account/list or http://localhost:80/account/
+
+	/**
+	 * 계좌 목록 보기 페이지
+	 * @param model - accountList
+	 * @return account/list.jsp
+	 */
 	@GetMapping({"/list", "/"})
 	public String listPage(Model model) {
 		User principal = (User)session.getAttribute(Define.PRINCIPAL);

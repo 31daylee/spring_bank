@@ -73,10 +73,11 @@ public class UserController {
 	public String signInPage() {
 		return "user/signIn";
 	}
+	
 	/**
 	 * 로그인 요청 처리 
 	 * @param SignInFormDto
-	 * @return 추후 account/list 페이지로 이동 예정(TODO)
+	 * @return account/list.jsp
 	 */
 	@PostMapping("/sign-in")
 	public String signInProc(SignInFormDto dto) {
@@ -91,9 +92,8 @@ public class UserController {
 		// 서비스 호출 
 		User user =  userService.readUser(dto);
 		httpSession.setAttribute(Define.PRINCIPAL, user); //principal 이란 key 값을 지님
-		
-		//TODO: account/list 페이지 완성
-		return "redirect:/user/sign-in";
+
+		return "redirect:/account/list";
 	}
 	
 	// 로그아웃 기능
