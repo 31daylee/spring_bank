@@ -15,6 +15,6 @@ public interface AccountRepository {
 	
 	// 계좌 조회 - 1 유저 , N 계좌 
 	public List<Account> findAllByUserId();
-	public Account findByNumber(Integer id);
+	public Account findByNumber(String id);
 	
 }

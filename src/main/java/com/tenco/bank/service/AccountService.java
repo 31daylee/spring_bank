@@ -9,6 +9,7 @@ import com.tenco.bank.dto.AccountSaveFormDto;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.Account;
 import com.tenco.bank.repository.interfaces.AccountRepository;
+import com.tenco.bank.utils.Define;
 
 @Service
 public class AccountService {
@@ -23,17 +24,27 @@ public class AccountService {
 	// TODO: 계좌 번호 중복 확인 예정
 	@Transactional
 	public void createAccount(AccountSaveFormDto dto, Integer principalId) {
-
-		System.out.println("----------");
+		// 계좌 번호 중복 확인
+		// 예외 처리 
+		if(readAccount(dto.getNumber()) != null) {
+			throw new CustomRestfulException(Define.EXIST_ACCOUNT, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		Account account = new Account();
 		account.setNumber(dto.getNumber());
 		account.setPassword(dto.getPassword());
 		account.setBalance(dto.getBalance());
 		account.setUserId(principalId);
 		int resultRowCount = accountRepository.insert(account);
-		System.out.println("2222222");
+
 		if(resultRowCount != 1) {
-			throw new CustomRestfulException("계좌 생성 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(Define.FAIL_TO_CREATE_ACCOUNT, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	
+
+	}
+	
+	// 단일 계좌 검색 기능 - account 객체로 리턴함으로써 타 기능에도 재사용 가능 (int로 하면 한정적)
+	public Account readAccount(String number) {
+		return accountRepository.findByNumber(number);
 	}
 }
