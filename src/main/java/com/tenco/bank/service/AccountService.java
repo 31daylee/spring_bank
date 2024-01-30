@@ -39,7 +39,6 @@ public class AccountService {
 		if(resultRowCount != 1) {
 			throw new CustomRestfulException(Define.FAIL_TO_CREATE_ACCOUNT, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	
 
 	}
 	
