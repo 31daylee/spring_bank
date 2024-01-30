@@ -12,6 +12,7 @@ import com.tenco.bank.dto.SignUpFormDto;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.User;
 import com.tenco.bank.service.UserService;
+import com.tenco.bank.utils.Define;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -89,7 +90,7 @@ public class UserController {
 		}
 		// 서비스 호출 
 		User user =  userService.readUser(dto);
-		httpSession.setAttribute("principal", user); //principal 이란 key 값을 지님
+		httpSession.setAttribute(Define.PRINCIPAL, user); //principal 이란 key 값을 지님
 		
 		//TODO: account/list 페이지 완성
 		return "redirect:/user/sign-in";

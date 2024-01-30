@@ -11,7 +11,7 @@ import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.User;
 import com.tenco.bank.repository.interfaces.UserRepository;
 
-@Service // IoC 대상
+@Service // IoC 대상 + 싱글톤으로 관리 됨
 public class UserService {
 
 	// DB 접근
