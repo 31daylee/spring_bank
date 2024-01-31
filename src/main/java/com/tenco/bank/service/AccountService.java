@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.bank.dto.AccountSaveFormDto;
+import com.tenco.bank.dto.WithdrawFormDto;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.Account;
+import com.tenco.bank.repository.entity.History;
 import com.tenco.bank.repository.interfaces.AccountRepository;
+import com.tenco.bank.repository.interfaces.HistoryRepository;
 import com.tenco.bank.utils.Define;
 
 @Service
@@ -20,6 +23,10 @@ public class AccountService {
 	// 생성자 의존 주입을 받는 것은 인터페이스로 구현하는 것이 OCP를 만족함 
 	@Autowired
 	private AccountRepository accountRepository;
+	
+	@Autowired
+	private HistoryRepository historyRepository;
+
 	
 	// 계좌 생성
 	// 1. 사용자 정보 
@@ -54,6 +61,54 @@ public class AccountService {
 
 		return accountRepository.findAllByUserId(principalId);
 	}
+
+	// 출금 기능 만들기
+	// 1. 계좌 존재 여부 확인 --select
+	// 2. 본인 계좌 여부 확인 --select
+	// 3. 계좌 비번 확인
+	// 4. 잔액 여부 확인
+	// 5. 출금 처리 --update
+	// 6. 거래 내역 등록 --insert(history)
+	// 7. 트랜잭션 처리
+	
+	@Transactional
+	public void updateAccountWithdraw(WithdrawFormDto dto, Integer principalId) {
+
+		// 1.
+		Account accountEntity = accountRepository.findByNumber(dto.getWAccountNumber());
+		if(accountEntity == null) {
+			throw new CustomRestfulException(Define.NOT_EXIST_ACCOUNT, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		// 2.
+		if(accountEntity.getUserId() != principalId ) {
+			throw new CustomRestfulException("본인 소유 계좌가 아닙니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		// 3. 
+		if(!accountEntity.getPassword().equals(dto.getWAccountPassword())) {
+			throw new CustomRestfulException("비밀번호가 다릅니다", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		// 4.
+		if(accountEntity.getBalance() < dto.getAmount()) {
+			throw new CustomRestfulException("계좌 잔액이 부족합니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		// 5.
+		accountEntity.withdraw(dto.getAmount()); // 출금기능 
+		accountRepository.updateById(accountEntity); // 객체 상태값 변경
+
+		// 6.
+		History history = new History();
+		history.setAmount(dto.getAmount());
+		history.setWAccountId(accountEntity.getId());
+		history.setDAccountId(null);
+		history.setWBalance(accountEntity.getBalance());
+		history.setDBalance(null);
+		
+		int rowResultCount = historyRepository.insert(history);
+		if(rowResultCount != 1) {
+			throw new CustomRestfulException("정상 처리 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	
 	
 }
