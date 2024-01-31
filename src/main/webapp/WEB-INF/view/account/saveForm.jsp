@@ -17,7 +17,7 @@
 				  </div>
 				  <div class="form-group">
 				    <label for="balance">입금 금액  :</label>
-				    <input type="password" name="balance" class="form-control" placeholder="Enter balance" id="balance" value="2000">
+				    <input type="text" name="balance" class="form-control" placeholder="Enter balance" id="balance" value="2000">
 				  </div>
 				  <button type="submit" class="btn btn-primary">계좌 생성</button>
 				</form>
