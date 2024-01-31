@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.bank.dto.AccountSaveFormDto;
 import com.tenco.bank.dto.DepositFormDto;
+import com.tenco.bank.dto.TransferFormDto;
 import com.tenco.bank.dto.WithdrawFormDto;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.Account;
@@ -139,6 +140,48 @@ public class AccountService {
 			throw new CustomRestfulException("정상 처리 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
+	}
+
+
+	// 이체 기능 만들기
+	// 1. 출금 계좌 존재 확인 --select
+	// 2. 입금 계좌 존재 확인 --select
+	// 3. 출금 계좌 본인 소유 확인
+	// 4. 출금 계좌 비번 확인
+	// 5. 출금 계좌 잔액 확인
+	// 6. 출금 계좌 잔액 수정 -update
+	// 7. 입금 계좌 잔액 수정 -update
+	// 8. 거래 내역 등록 처리(이체 내역 쿼리 테스트)
+	// 9. 트랜잭션 처리 
+	@Transactional
+	public void updateAccountTransfer(TransferFormDto dto, Integer principalId) {
+		Account accountWEntity = accountRepository.findByNumber(dto.getWAccountNumber());
+		Account accountDEntity = accountRepository.findByNumber(dto.getDAccountNumber());
+		if(accountWEntity == null || accountDEntity == null ) {
+			throw new CustomRestfulException(Define.NOT_EXIST_ACCOUNT, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		// 3.
+		accountWEntity.checkOwner(principalId);
+		
+		// 4.
+		accountWEntity.checkPassword(dto.getPassword());
+		// 5. 출금 계좌 잔액 
+		accountWEntity.checkBalance(dto.getAmount());
+		// 6. 출금 계좌 잔액 수정
+		History history = new History();
+		history.setAmount(dto.getAmount());
+		history.setWAccountId(accountWEntity.getId());
+		history.setDAccountId(null);
+		history.setWBalance(accountWEntity.getBalance());
+		history.setDBalance(null);
+		
+		History history2 = new History();
+		history.setAmount(dto.getAmount());
+		history.setWAccountId(null);
+		history.setDAccountId(accountDEntity.getId());
+		history.setWBalance(null);
+		history.setDBalance(accountDEntity.getBalance());
 	}
 	
 	

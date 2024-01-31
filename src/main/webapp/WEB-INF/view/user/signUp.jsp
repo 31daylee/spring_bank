@@ -8,15 +8,15 @@
 				<h5>어서오세요! 환영합니다.</h5>
 				<form action="/user/sign-up" method="post">
 				  <div class="form-group">
-				    <label for="username">username:</label>
+				    <label for="username">이름 :</label>
 				    <input type="text" name="username" class="form-control" placeholder="Enter username" id="username">
 				  </div>
 				  <div class="form-group">
-				    <label for="pwd">password:</label>
+				    <label for="pwd">비밀번호 :</label>
 				    <input type="password" name="password" class="form-control" placeholder="Enter password" id="pwd">
 				  </div>
 				  <div class="form-group">
-				    <label for="fullname">fullname:</label>
+				    <label for="fullname">성 :</label>
 				    <input type="text" name="fullname" class="form-control" placeholder="Enter fullname" id="fullname">
 				  </div>
 				  <!-- TODO: 이벤트 전파 속성- 버블링/캡처링이란? -->

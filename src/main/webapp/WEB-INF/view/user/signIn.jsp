@@ -8,11 +8,11 @@
 				<h5>어서오세요! 환영합니다.</h5>
 				<form action="/user/sign-in" method="post"> <!-- 로그인은 post로 해야, 히스토리가 안남음 -->
 				  <div class="form-group">
-				    <label for="username">username:</label>
+				    <label for="username">이름 :</label>
 				    <input type="text" name="username" class="form-control" placeholder="Enter username" id="username" value="길동">
 				  </div>
 				  <div class="form-group">
-				    <label for="pwd">password:</label>
+				    <label for="pwd">비밀번호 :</label>
 				    <input type="password" name="password" class="form-control" placeholder="Enter password" id="pwd" value="1234">
 				  </div>
 				  <button type="submit" class="btn btn-primary">로그인</button>

@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<script>
+
+
+</script>
 <html lang="en">
 <head>
   <title>my bank</title>
@@ -51,11 +55,10 @@
         <!-- Sidebar 영역 -->
         <aside class="col-md-3">
             <div class="d-flex flex-column p-3 bg-light">
-                <a href="/" class="mb-3 me-md-auto link-dark text-decoration-none">
+                <a href="/user/sign-in" class="mb-3 me-md-auto link-dark text-decoration-none">
                     <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                    <span class="fs-4">뱅킹 서비스</span>
+                    <span style="font-size: 21px; font-weight:bold;">뱅킹 서비스</span>
                 </a>
-                <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="/account/save" class="nav-link active" aria-current="page">
@@ -82,7 +85,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
+                        <a href="/account/transfer" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
                             이체
                         </a>
