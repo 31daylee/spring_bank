@@ -17,9 +17,8 @@
 </head>
 <body>
 
-	<div class="jumbotron text-center banner--img" style="margin-bottom:0">
+	<div class=" text-center banner--img" >
 	  <img class="header-logo"src="/images/logo_white.png" alt="MYBANK 로고">
-	  <p class = "sub-text">최첨단 은행 관리 시스템</p> 
 	</div>
 	
 	<nav class="navbar navbar-expand-sm bg-light navbar-dark">
@@ -47,29 +46,65 @@
 	    </ul>
 	  </div>  
 	</nav>
+<div class="container" >
+    <div class="row">
+        <!-- Sidebar 영역 -->
+        <aside class="col-md-3">
+            <div class="d-flex flex-column p-3 bg-light">
+                <a href="/" class="mb-3 me-md-auto link-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                    <span class="fs-4">뱅킹 서비스</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="/account/save" class="nav-link active" aria-current="page">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                            계좌 생성
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/account/list" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                            계좌 목록
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/account/withdraw" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                            출금
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/account/deposit" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                            입금
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                            이체
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/profile.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong style="margin-left:5px">이현정</strong>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
 
-	<div class="container" style="margin-top:30px">
-	  <div class="row">
-	    <div class="col-sm-4">
-	      <div class="m--profile"></div>
-	      <h3>Some Links</h3>
-	      <p>Lorem ipsum dolor sit ame.</p>
-	      <ul class="nav nav-pills flex-column">
-	        <li class="nav-item">
-	          <a class="nav-link " href="/account/save" >계좌 생성</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/account/list">계좌 목록</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/account/withdraw">출금</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="#">입금</a>
-	        </li>
-	           <li class="nav-item">
-	          <a class="nav-link" href="#">이체</a>
-	        </li>
-	      </ul>
-	      <hr class="d-sm-none">
-	    </div>
+
+	
+	
