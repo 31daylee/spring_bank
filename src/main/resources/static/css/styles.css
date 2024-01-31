@@ -1,14 +1,22 @@
 .banner--img{
-	background-image: url(https://picsum.photos/600);
+	background-color: #78be21;
+	color:#ffb81c;
 	background-size: cover;
 	background-position: center;
 	width: 100%;
 	height: 100%;
 }
  .m--profile{
- 	background-image: url("https://picsum.photos/id/1/350");
+ 	background-image: url('/images/logo.png');
  	background-size: cover;
  	background-position: center;
  	width: 100%;
  	height: 200px;
+ }
+.header-logo{
+	width: 250px;
+	height: 200px;
+}
+ .sub-text{
+ 	font-weight: 600;
  }
