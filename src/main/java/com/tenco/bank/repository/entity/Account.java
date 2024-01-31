@@ -47,10 +47,16 @@ public class Account {
 			throw new CustomRestfulException("출금 잔액이 부족합니다", HttpStatus.BAD_REQUEST);
 		}
 	}
+	
 	// 계좌 소유자 확인 기능
 	public void checkOwner(Integer principalId) {
 		if(this.userId != principalId) {
 			throw new CustomRestfulException("계좌 소유자가 아닙니다", HttpStatus.BAD_REQUEST);
+		}
+	}
+	public void checkAmount(Long amount) {
+		if(amount < 0) {
+			throw new CustomRestfulException("입금은 1원이상 부터 가능합니다.", HttpStatus.BAD_REQUEST);
 		}
 	}
 	

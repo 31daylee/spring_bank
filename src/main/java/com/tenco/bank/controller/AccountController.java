@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tenco.bank.dto.AccountSaveFormDto;
+import com.tenco.bank.dto.DepositFormDto;
 import com.tenco.bank.dto.WithdrawFormDto;
 import com.tenco.bank.handler.UnAuthorizedException;
 import com.tenco.bank.handler.exception.CustomRestfulException;
@@ -115,7 +116,7 @@ public class AccountController {
 	// 출금 요청 로직 만들기
 	@PostMapping("/withdraw")
 	public String withdrawProc(WithdrawFormDto dto) {
-	User principal = (User)session.getAttribute(Define.PRINCIPAL);
+		User principal = (User)session.getAttribute(Define.PRINCIPAL);
 		
 		if(principal == null) {
 			throw new UnAuthorizedException("로그인 먼저 해주세요", HttpStatus.UNAUTHORIZED);
@@ -136,6 +137,43 @@ public class AccountController {
 		// TODO: Service 만들기
 		accountService.updateAccountWithdraw(dto, principal.getId());
 		
+		return "redirect:/account/list";
+	}
+	
+	// 입금 페이지 요청
+	@GetMapping("/deposit")
+	public String depoistPage() {
+		User principal = (User)session.getAttribute(Define.PRINCIPAL);
+		if(principal == null) {
+			throw new UnAuthorizedException("로그인 먼저 해주세요", HttpStatus.UNAUTHORIZED);
+		}
+		
+		return "account/deposit";
+	}
+	
+	// 입금 요청 로직 만들기
+	@PostMapping("/deposit")
+	public String depositProc(DepositFormDto dto) {
+		User principal = (User)session.getAttribute(Define.PRINCIPAL);
+		
+		if(principal == null) {
+			throw new UnAuthorizedException("로그인 먼저 해주세요", HttpStatus.UNAUTHORIZED);
+		}
+
+		if(dto.getAmount() == null) {
+			throw new CustomRestfulException("금액을 입력하세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getAmount().longValue() <=0) {
+			throw new CustomRestfulException("입금 금액이 0원 이하일 수 없습니다.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getDAccountNumber() == null || dto.getDAccountNumber().isEmpty()) {
+			throw new CustomRestfulException("입금 계좌 번호를 입력해주세요", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getDAccountPassword() == null || dto.getDAccountPassword().isEmpty()) {
+			throw new CustomRestfulException("계좌 비밀번호를 다시 입력해주세요", HttpStatus.BAD_REQUEST);
+		}
+		// TODO: Service 만들기
+		accountService.updateAccountDeposit(dto, principal.getId());
 		return "redirect:/account/list";
 	}
 }
