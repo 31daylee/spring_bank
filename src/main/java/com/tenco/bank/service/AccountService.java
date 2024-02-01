@@ -13,6 +13,7 @@ import com.tenco.bank.dto.TransferFormDto;
 import com.tenco.bank.dto.WithdrawFormDto;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.Account;
+import com.tenco.bank.repository.entity.CustomHistoryEntity;
 import com.tenco.bank.repository.entity.History;
 import com.tenco.bank.repository.interfaces.AccountRepository;
 import com.tenco.bank.repository.interfaces.HistoryRepository;
@@ -184,7 +185,23 @@ public class AccountService {
 			throw new CustomRestfulException("정상 처리 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+
+	/**
+	 * 단일 계좌 거래 내역 검색(전체, 입금, 출금)
+	 * @param type [all, deposit, withdraw]
+	 * @param id (account_id)
+	 * @return 동적 쿼리 - List 
+	 */
+	public List<CustomHistoryEntity> readHistoryListByAccount(String type, Integer id) {
+		
+		return historyRepository.findByIdHistoryType(type, id);
+	}
 	
+	// 단일 계좌 조회 - AccountById
+	public Account readByAccountId(Integer id) {
+		return accountRepository.findByAccountId(id);
+	}
 	
 	
 }
