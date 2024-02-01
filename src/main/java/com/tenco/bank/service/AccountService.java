@@ -161,27 +161,28 @@ public class AccountService {
 			throw new CustomRestfulException(Define.NOT_EXIST_ACCOUNT, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		// 3.
 		accountWEntity.checkOwner(principalId);
-		
-		// 4.
 		accountWEntity.checkPassword(dto.getPassword());
-		// 5. 출금 계좌 잔액 
 		accountWEntity.checkBalance(dto.getAmount());
-		// 6. 출금 계좌 잔액 수정
-		History history = new History();
-		history.setAmount(dto.getAmount());
-		history.setWAccountId(accountWEntity.getId());
-		history.setDAccountId(null);
-		history.setWBalance(accountWEntity.getBalance());
-		history.setDBalance(null);
+		accountWEntity.withdraw(dto.getAmount());
+		accountDEntity.deposit(dto.getAmount());
 		
-		History history2 = new History();
-		history.setAmount(dto.getAmount());
-		history.setWAccountId(null);
-		history.setDAccountId(accountDEntity.getId());
-		history.setWBalance(null);
-		history.setDBalance(accountDEntity.getBalance());
+		int resultRowCountWithdraw = accountRepository.updateById(accountWEntity);
+		int resultRowCountDeposit = accountRepository.updateById(accountDEntity);
+		if(resultRowCountWithdraw != 1 && resultRowCountDeposit != 1) {
+			throw new CustomRestfulException("정상 처리 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		History history = History.builder()
+				.amount(dto.getAmount())					// 이체 금액
+				.wAccountId(accountWEntity.getId())	 		// 출금 계좌
+				.dAccountId(accountDEntity.getId())			// 입금 계좌
+				.wBalance(accountWEntity.getBalance())		// 출금 계좌 남은 잔액
+				.dBalance(accountDEntity.getBalance())		// 입금 계좌 남은 잔액
+				.build();
+		int resultRowCountHistory = historyRepository.insert(history);
+		if(resultRowCountHistory != 1) {
+			throw new CustomRestfulException("정상 처리 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	
