@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <script>
 
@@ -61,32 +63,28 @@
                 </a>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="/account/save" class="nav-link active" aria-current="page">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+        				<a href="/account/save" class="nav-link active" aria-current="page">
                             계좌 생성
                         </a>
                     </li>
                     <li>
                         <a href="/account/list" class="nav-link link-dark">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                            
                             계좌 목록
                         </a>
                     </li>
                     <li>
                         <a href="/account/withdraw" class="nav-link link-dark">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
                             출금
                         </a>
                     </li>
                     <li>
                         <a href="/account/deposit" class="nav-link link-dark">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
                             입금
                         </a>
                     </li>
                     <li>
                         <a href="/account/transfer" class="nav-link link-dark">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
                             이체
                         </a>
                     </li>
