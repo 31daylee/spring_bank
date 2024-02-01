@@ -95,7 +95,7 @@
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="/images/profile.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong style="margin-left:5px">이현정</strong>
+                        <strong style="margin-left:5px">${principal.username}</strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                         <li><a class="dropdown-item" href="#">New project...</a></li>

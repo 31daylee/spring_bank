@@ -5,7 +5,6 @@
     <!-- 여기 아래 부분 부터 main 영역으로 사용 예정  -->
 			<div class="col-md-9" >
 				<h2>나의 계좌 목록</h2>
-				<h5>어서오세요! 환영합니다.</h5>
 				<!-- 만약 accountList null or not null  -->
 				<div class="bg-light">
 					<c:choose>
