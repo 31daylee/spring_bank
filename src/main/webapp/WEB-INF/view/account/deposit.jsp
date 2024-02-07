@@ -3,9 +3,13 @@
 <!-- header -->
 <%@ include file="/WEB-INF/view/layout/header.jsp" %>
 			<!-- 메인페이지 -->
-			<div class="col-sm-8">
-			    <div class="bg-light p-md-5">
-			        <h2>입금 페이지(인증)</h2>
+<main id="main" style="margin-top: 200px;">
+    <section id="features" class="features">
+      <div class="container">
+     	<div class="row justify-content-center align-items-center">
+        	<div class="col-md-6">
+        		<div class="section-title">
+			        <h2>입금 페이지</h2>
 			        <h5>어서오세요 환영합니다</h5>
 			        <form action="/account/deposit" method="post">
 			            <div class="form-group">
@@ -29,6 +33,7 @@
 			</div>
 		</div>
 	</div>
-
+ </section>
+</main>
 <!-- footer -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp" %>

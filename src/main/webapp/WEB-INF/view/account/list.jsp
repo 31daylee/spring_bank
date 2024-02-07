@@ -3,7 +3,12 @@
 <!-- header -->
 <%@ include file="/WEB-INF/view/layout/header.jsp" %>
     <!-- 여기 아래 부분 부터 main 영역으로 사용 예정  -->
-			<div class="col-md-9" >
+<main id="main" style="margin-top: 200px;">
+    <section id="features" class="features">
+      <div class="container">
+     	<div class="row justify-content-center align-items-center">
+        	<div class="col-md-6">
+        		<div class="section-title">
 				<h2>나의 계좌 목록</h2>
 				<!-- 만약 accountList null or not null  -->
 				<div class="bg-light">
@@ -34,6 +39,9 @@
 			</div>
 		</div>
 	</div>
+	</div>
+</section>
+</main>
 
 <!-- footer -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp" %>

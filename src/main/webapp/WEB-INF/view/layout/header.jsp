@@ -4,108 +4,78 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
-<script>
-
-
-</script>
 <html lang="en">
+
 <head>
-  <title>my bank</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Appland Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
   <!-- 외부 스타일 시트 가져오기 -->
   <link rel="stylesheet" href="/css/styles.css">
 
 </head>
+
 <body>
 
-	<div class=" text-center banner--img" >
-	  <img class="header-logo"src="/images/logo_white.png" alt="MYBANK 로고">
-	</div>
-	
-	<nav class="navbar navbar-expand-sm bg-light navbar-dark">
-	  <a class="navbar-brand text-dark" href="#">Menu</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-	    <ul class="navbar-nav text-dark">
-		    <c:choose>
-		    	<c:when test="${principal != null}">
-				     <li class="nav-item">
-				        <a class="nav-link text-dark" href="/user/logout">로그아웃</a>
-				     </li>  
-		    	</c:when>
-		    	<c:otherwise>
-	    		      <li class="nav-item">
-				        <a class="nav-link text-dark" href="/user/sign-in">로그인</a>
-				      </li>
-				      <li class="nav-item">
-				        <a class="nav-link text-dark" href="/user/sign-up">회원가입</a>
-				      </li>
-		    	</c:otherwise>
-		    </c:choose>
-	    </ul>
-	  </div>  
-	</nav>
-<div class="container" >
-    <div class="row">
-        <!-- Sidebar 영역 -->
-        <aside class="col-md-3">
-            <div class="d-flex flex-column p-3 bg-light">
-                <a href="/user/sign-in" class="mb-3 me-md-auto link-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                    <span style="font-size: 21px; font-weight:bold;">뱅킹 서비스</span>
-                </a>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-        				<a href="/account/save" class="nav-link active" aria-current="page">
-                            계좌 생성
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/account/list" class="nav-link link-dark">
-                            
-                            계좌 목록
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/account/withdraw" class="nav-link link-dark">
-                            출금
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/account/deposit" class="nav-link link-dark">
-                            입금
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/account/transfer" class="nav-link link-dark">
-                            이체
-                        </a>
-                    </li>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top  header-transparent ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="/index" style="font-weight:bold">MyBank</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li class="dropdown"><a href="#"><span>뱅킹 업무</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li class="dropdown"><a href="#"><span>계좌 관리</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="/account/save">계좌 생성</a></li>
+                  <li><a href="/account/list">나의 계좌 목록</a></li>
+                
                 </ul>
-                <hr>
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/images/profile.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong style="margin-left:5px">${principal.username}</strong>
-                    </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-
-	
-	
+              </li>
+         		<li><a href="/account/withdraw">출금</a></li>
+                <li><a href="/account/deposit">입금</a></li>
+                <li><a href="/account/transfer">이체</a></li>
+            </ul>
+          </li>
+         <c:choose>
+	    	<c:when test="${principal != null}">
+         		<li><a class="getstarted scrollto" href="/user/logout">로그아웃</a></li>
+          	</c:when>
+		    <c:otherwise>
+          		<li><a class="getstarted scrollto" href="/user/sign-in">로그인</a></li>
+          		<li><a class="getstarted scrollto" href="/user/sign-up">회원가입</a></li>
+          </c:otherwise>
+		 </c:choose>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
