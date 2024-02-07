@@ -32,3 +32,33 @@
 	margin-top:100px;
 	margin-bottom:100px;
 }
+
+/* 로그인 버튼 */
+ .login-container {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+ }
+.btn-login{
+margin-left: auto;
+  position: relative;
+}
+ .login-button {
+   width: 35px;
+   height: 38px;
+   margin-left: 4px;
+ }
+
+ .login-button img {
+   width: 100%;
+   height: 100%;
+   border-radius: 5px;
+ }
+
+ .login-button a {
+   display: block;
+   width: 35px;
+   height: 38px;
+   text-decoration: none; 
+   color: inherit; 
+ }

@@ -15,10 +15,18 @@
 				    <label for="pwd">비밀번호 :</label>
 				    <input type="password" name="password" class="form-control" placeholder="Enter password" id="pwd" value="1234">
 				  </div>
-				  <button type="submit" class="btn btn-primary">로그인</button>
-				  <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=72919ee7c8ec0f967c858cc03998bbc3&redirect_uri=http://localhost:80/user/kakao-callback">
-				  	<img alt="" src="/images/kakao_login_small.png" style="width:75px; height:38px;">
-				  </a>
+				  <div class="login-container">
+					  <a class="login-button" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=72919ee7c8ec0f967c858cc03998bbc3&redirect_uri=http://localhost:80/user/kakao-callback">
+					  	<img alt="" src="/images/kakaotalk_sharing_btn_small.png" style="border: 1px solid gray;" >
+					  </a> 
+					  <a href="#" class="login-button" style="border: 1px solid gray; border-radius:6px;" >
+					  	<img alt="" src="/images/naver_logo.png" >
+					  </a>
+					  <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=78534889326-bd77l69smot5kpjddheeu5nsjrcbf8ea.apps.googleusercontent.com&redirect_uri=http://localhost:80/user/google-callback&response_type=code&scope=profile&email" class="login-button">
+					  	<img alt="" src="/images/google_logo.png" >
+					  </a>
+					  <button type="submit" class="btn btn-primary btn-login" >로그인</button>
+				  </div>
 				</form>
 			</div>
 		</div>

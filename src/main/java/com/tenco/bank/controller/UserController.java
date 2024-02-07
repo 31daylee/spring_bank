@@ -1,5 +1,8 @@
 package com.tenco.bank.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -13,12 +16,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import com.tenco.bank.dto.KakaoProfile;
 import com.tenco.bank.dto.OAuthToken;
 import com.tenco.bank.dto.SignInFormDto;
 import com.tenco.bank.dto.SignUpFormDto;
+import com.tenco.bank.dto.oauth.google.GoogleProfile;
+import com.tenco.bank.dto.oauth.kakao.KakaoProfile;
 import com.tenco.bank.handler.exception.CustomRestfulException;
 import com.tenco.bank.repository.entity.User;
 import com.tenco.bank.service.UserService;
@@ -108,58 +113,52 @@ public class UserController {
 		return "redirect:/account/list";
 	}
 	
-	// 로그아웃 기능
+	/**
+	 * 로그아웃 기능 
+	 * @return user/sign-in 로그인 페이지
+	 */
 	@GetMapping("/logout")
 	public String logout() {
 		httpSession.invalidate();
 		return "redirect:/user/sign-in";
 	}
 	
-	// http://localhost:80/user/kakao-callback?code="xxxxxxx"
+	/**
+	 * 카카오 소셜 로그인
+	 * @param code
+	 * @return 계좌 목록
+	 */
 	@GetMapping("/kakao-callback")
-	// @ResponseBody // <- 데이터를 반환 : 테스트 용
 	public String kakaoCallback(@RequestParam String code) {
 		
-		// POST 방식, Header 구성, body 구성
 		RestTemplate rt1 = new RestTemplate();
-		// 헤더 구성
 		HttpHeaders headers1 = new HttpHeaders();
 		headers1.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-		// body 구성 
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "72919ee7c8ec0f967c858cc03998bbc3");
 		params.add("redirect_uri", "http://localhost:80/user/kakao-callback");
 		params.add("code", code);
 		
-		// 헤더 + 바디 결합
 		HttpEntity<MultiValueMap<String, String>> reqMsg
 		 = new HttpEntity<>(params,headers1);
 		
 		ResponseEntity<OAuthToken> response =  rt1.exchange("https://kauth.kakao.com/oauth/token",
 												HttpMethod.POST, reqMsg, OAuthToken.class);
 		System.out.println(response.getBody().getAccessToken());
-		// 다시 요청 -- 인증 토큰 -- 사용자 정보 요청
-		// Rt 만들어 요청
 		RestTemplate rt2 = new RestTemplate();
 		HttpHeaders headers2 = new HttpHeaders();
 		headers2.add("Authorization","Bearer " +response.getBody().getAccessToken()) ;
 		headers2.add("Content-type","application/x-www-form-urlencoded;charset=utf-8") ;
-		// 바디 X
-		
-		// 결합
 		HttpEntity<MultiValueMap<String, String>> kakaoInfo = new HttpEntity<>(headers2);
 		
-		// 요청
 		ResponseEntity<KakaoProfile> response2 =  rt2.exchange("https://kapi.kakao.com/v2/user/me",
 												HttpMethod.POST, kakaoInfo, KakaoProfile.class);
 		
 	
 		KakaoProfile kakaoProfile = response2.getBody();
-		// 최초 사용자 판단 여부 -- 사용자 username 존재 여부 확인
-		// 우리 사이트 --> 카카오 
 		SignUpFormDto dto = SignUpFormDto.builder()
-							.username("OAuth_"+ kakaoProfile.getProperties().getNickname())
+							.username("Kakao_"+ kakaoProfile.getProperties().getNickname())
 							.fullname("Kakao")
 							.password("asd1234")
 							.build();
@@ -167,21 +166,68 @@ public class UserController {
 		User oldUser =  userService.readUserByUsername(dto.getUsername());
 		if(oldUser == null) {
 			userService.createUser(dto);
-			//////////////////////////////
-			// oldUser라면 해당하는 정보를 가져와야한다.
 			oldUser = new User();
 			oldUser.setUsername(dto.getUsername());
 			oldUser.setFullname(dto.getFullname());
 		}
 		oldUser.setPassword(null);
-		// 로그인 처리
 		httpSession.setAttribute(Define.PRINCIPAL, oldUser);
-		// 단 최소 요청 사용자라면 회원 후 로그인 처리 
 		
 		return "redirect:/account/list";
-	
-		
 
+	}
+	/**
+	 * 구글 소셜 로그인
+	 * @param accessCode
+	 * @return 계좌 목록
+	 */
+	@GetMapping("/google-callback")
+	public String googleCallback(@RequestParam("code") String accessCode) {
+		
+		RestTemplate rt1 = new RestTemplate();
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		params.add("code", accessCode);
+		params.add("client_id", "78534889326-bd77l69smot5kpjddheeu5nsjrcbf8ea.apps.googleusercontent.com");
+		params.add("client_secret", "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");
+		params.add("redirect_uri", "http://localhost:80/user/google-callback");
+		params.add("grant_type", "authorization_code");
+
+		
+		ResponseEntity<OAuthToken> response1 =  rt1.postForEntity("https://oauth2.googleapis.com/token",
+				params, OAuthToken.class);
+		
+		
+		// 액세스 토큰 -> 사용자 정보
+		RestTemplate rt2 = new RestTemplate();
+		HttpHeaders headers2 = new HttpHeaders();
+		
+		headers2.add("Authorization","Bearer " +response1.getBody().getAccessToken()) ;
+		HttpEntity<MultiValueMap<String, String>> googleInfo = new HttpEntity<>(headers2);
+		ResponseEntity<GoogleProfile> response2 =  rt2.exchange("https://www.googleapis.com/userinfo/v2/me",
+													HttpMethod.GET, googleInfo, GoogleProfile.class);
+		
+		System.out.println(response2.getBody());
+		GoogleProfile googleProfile = response2.getBody();
+		System.out.println(response2.getBody());
+		SignUpFormDto dto = SignUpFormDto.builder()
+						                .username("Google_"+ googleProfile.getName())
+						                .fullname("Google")
+						                .password("1111")
+						                .build();
+		
+		User oldUser =  userService.readUserByUsername(dto.getUsername());
+	    if(oldUser == null) {
+	        userService.createUser(dto);
+	        oldUser = new User();
+	        oldUser.setUsername(dto.getUsername());
+	        oldUser.setFullname(dto.getFullname());
+	    }
+	    oldUser.setPassword(null); 
+	    
+	    httpSession.setAttribute(Define.PRINCIPAL, oldUser);
+	  
+	    return "redirect:/account/list";
+		
 	}
 	
 

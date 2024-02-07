@@ -1,5 +1,5 @@
 
-package com.tenco.bank.dto;
+package com.tenco.bank.dto.oauth.kakao;
 
 import lombok.Data;
 
