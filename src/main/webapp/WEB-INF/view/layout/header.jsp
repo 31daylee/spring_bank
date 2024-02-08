@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Appland Bootstrap Template - Index</title>
+  <title>MyBank</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -51,9 +51,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="/">Home</a></li>
-          <li class="dropdown"><a href="#"><span>뱅킹 업무</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>뱅킹 서비스</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li class="dropdown"><a href="#"><span>계좌 관리</span> <i class="bi bi-chevron-right"></i></a>
+              <li class="dropdown"><a href="/account/list"><span>마이페이지</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
                   <li><a href="/account/save">계좌 생성</a></li>
                   <li><a href="/account/list">나의 계좌 목록</a></li>

@@ -10,7 +10,7 @@
         		<div class="section-title">
 					<h2>로그인</h2>
 					<h5 class="greeting">어서오세요! 환영합니다</h5>
-					<form action="/user/sign-in" method="post"> <!-- 로그인은 post로 해야, 히스토리가 안남음 -->
+					<form action="/user/sign-in" method="post" class=" bg-light"  style=" padding:50px"> <!-- 로그인은 post로 해야, 히스토리가 안남음 -->
 					  <div class="form-group">
 					    <p>아이디</p><input type="text" name="username" class="form-control" placeholder="아이디를 입력해주세요" id="username">
 					  </div>
@@ -37,6 +37,12 @@
       </div>
     </section><!-- End App Features Section -->
   </main><!-- End #main -->
-
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
   <!-- ======= Footer ======= -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp" %></html>

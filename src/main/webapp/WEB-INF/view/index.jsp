@@ -1,83 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Appland Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="/assets/img/favicon.png" rel="icon">
-  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="/assets/css/style.css" rel="stylesheet">
-  <!-- 외부 스타일 시트 가져오기 -->
-  <link rel="stylesheet" href="/css/styles.css">
-
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top  header-transparent ">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <div class="logo">
-        <h1><a href="/index" style="font-weight:bold">MyBank</a></h1>
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li class="dropdown"><a href="#"><span>뱅킹 업무</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li class="dropdown"><a href="#"><span>계좌 관리</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="/account/save">계좌 생성</a></li>
-                  <li><a href="/account/list">나의 계좌 목록</a></li>
-                
-                </ul>
-              </li>
-         		<li><a href="/account/withdraw">출금</a></li>
-                <li><a href="/account/deposit">입금</a></li>
-                <li><a href="/account/transfer">이체</a></li>
-            </ul>
-          </li>
-         <c:choose>
-	    	<c:when test="${principal != null}">
-         		<li><a class="getstarted scrollto" href="/user/logout">로그아웃</a></li>
-          	</c:when>
-		    <c:otherwise>
-          		<li><a class="getstarted scrollto" href="/user/sign-in">로그인</a></li>
-          		<li><a class="getstarted scrollto" href="/user/sign-up">회원가입</a></li>
-          </c:otherwise>
-		 </c:choose>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-    </div>
-  </header><!-- End Header -->
-  <!-- ======= Hero Section ======= -->
+<%@ include file="/WEB-INF/view/layout/header.jsp" %>
   <section id="hero" class="d-flex align-items-center">
 
     <div class="container">
@@ -106,7 +29,7 @@
 
         <div class="section-title">
           <h2>마이뱅크</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+           <p>당신의 금융 생활을 혁신적으로 변화시키는 마이뱅크와 함께하세요. 우리는 안전하고 효율적인 금융 서비스를 제공하여 여러분의 미래를 더 밝게 만들어 드립니다</p>
         </div>
 
         <div class="row no-gutters">
@@ -115,33 +38,29 @@
               <div class="row">
                 <div class="col-md-6 icon-box" data-aos="fade-up">
                   <i class="bx bx-receipt"></i>
-                  <h4>Corporis voluptates sit</h4>
-                  <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                  <h4>금융의 혁신, 마이뱅크와 함께</h4>
+                  <p>당신의 재무 건강을 관리하는 데 필요한 모든 것을 제공하는 마이뱅크와 함께 하세요. 안전하고 신속한 금융 솔루션으로 여러분의 미래를 준비하세요</p>
                 </div>
                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
                   <i class="bx bx-cube-alt"></i>
-                  <h4>Ullamco laboris nisi</h4>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                  <h4>금융의 미래, 마이뱅크와 함께하는 여정</h4>
+                  <p>마이뱅크는 혁신적인 금융 서비스로 여러분의 금융 생활을 변화시키고 있습니다. 우리와 함께라면 더 나은 미래를 향해 안전하게 걸어갈 수 있습니다</p>
                 </div>
                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
                   <i class="bx bx-images"></i>
-                  <h4>Labore consequatur</h4>
-                  <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                  <h4>당신의 재무 건강을 위한 지혜로운 선택</h4>
+                  <p>금융 분야의 지혜와 기술력이 결집된 마이뱅크. 당신의 재무 상황을 분석하고 최고의 솔루션을 제공하여 여러분의 목표를 달성할 수 있도록 도와드립니다</p>
                 </div>
                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
                   <i class="bx bx-shield"></i>
-                  <h4>Beatae veritatis</h4>
-                  <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+                  <h4>안전하고 신속한 금융 솔루션, 당신의 믿음직한 파트너</h4>
+                  <p>마이뱅크는 당신의 금융적 안정을 위한 완벽한 파트너입니다. 우리의 전문가들은 항상 여러분의 편에 서서 최고의 서비스를 제공하기 위해 노력하고 있습니다</p>
                 </div>
-                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-                  <i class="bx bx-atom"></i>
-                  <h4>Molestiae dolor</h4>
-                  <p>Et fuga et deserunt et enim. Dolorem architecto ratione tensa raptor marte</p>
-                </div>
+            
                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
                   <i class="bx bx-id-card"></i>
-                  <h4>Explicabo consectetur</h4>
-                  <p>Est autem dicta beatae suscipit. Sint veritatis et sit quasi ab aut inventore</p>
+                  <h4>금융의 새로운 지평을 열다</h4>
+                  <p>금융 세계의 혁신을 이끄는 마이뱅크. 당신의 금전적인 목표를 달성하기 위해 우리는 최고의 기술과 노하우를 바탕으로 최선을 다하고 있습니다</p>
                 </div>
               </div>
             </div>
@@ -163,7 +82,7 @@
 
     <div class="container py-4">
       <div class="copyright">
-        &copy; Copyright <strong><span>Appland</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>MyBank</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         Designed by Hyeonjeong Lee

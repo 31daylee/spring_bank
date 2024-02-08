@@ -4,6 +4,9 @@ server:
     encoding:
       charset: utf-8
       force: true
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
 
 spring:
   mvc:
@@ -33,3 +36,4 @@ mybatis:
 logging:
   level:
     org.mybatis: DEBUG
+    

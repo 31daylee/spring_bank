@@ -11,7 +11,7 @@
 	        		<div class="section-title">
 					<h2>회원 가입</h2>
 					<h5 class="greeting">어서오세요! 환영합니다</h5>
-					<form action="/user/sign-up" method="post">
+					<form action="/user/sign-up" method="post" class=" bg-light"  style=" padding:50px">
 					  <div class="form-group">
 					    <label for="username">아이디</label>
 					    <input type="text" name="username" class="form-control" placeholder="아이디를 입력해주세요" id="username">

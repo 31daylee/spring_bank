@@ -13,9 +13,11 @@
 	<update id="updateById">
 		update user_tb set username = #{username}, 
 						password = #{password},
+						origin_file_name = #{originFileName},
+	       				upload_file_name = #{uploadFileName},
 			   			fullname = #{fullname} where id = #{id}
 	</update>
-	
+
 	<delete id="deleteById">
 		delete from user_tb where id = #{id}
 	</delete>
