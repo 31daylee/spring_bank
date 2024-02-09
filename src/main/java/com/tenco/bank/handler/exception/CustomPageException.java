@@ -13,7 +13,5 @@ public class CustomPageException extends RuntimeException{
 		super(message);
 		this.httpStatus = httpStatus;
 	}
-	// 사용하는 시점에 활용 가능
-	// new CustomPageException("바보야", HttpStatus.ok);
 	
 }

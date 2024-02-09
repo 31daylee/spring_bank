@@ -14,9 +14,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProfileUpdateFormDto {
-	private String username;
-	private String password;
 	private String fullname;
+	private String password;
+	private String email;
+	private String hp;
 	private MultipartFile customFile;
 	private String originFileName;
 	private String uploadFileName;

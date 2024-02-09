@@ -73,27 +73,31 @@ public class UserService {
 	public User readUserByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
+	
+	
 	/**
 	 * 프로필 수정/등록 
 	 * @param dto
 	 */
 	@Transactional 
-	public void updateProfile(ProfileUpdateFormDto dto) {
+	public void updateProfile(ProfileUpdateFormDto dto, Integer principalId) {
+		
 		
 		User user = User.builder()
-				.username(dto.getUsername())
-				.password(passwordEncoder.encode(dto.getPassword()))
 				.fullname(dto.getFullname())
+				.email(dto.getEmail())
+				.hp(dto.getHp())
 				.originFileName(dto.getOriginFileName())
 				.uploadFileName(dto.getUploadFileName())
+				.id(principalId)
 				.build();
 		
-		int result = userRepository.updateById(user);
-		if(result != 1) {
-			throw new CustomRestfulException("프로필 등록 실패"
-					, HttpStatus.INTERNAL_SERVER_ERROR); 
-		}
+		userRepository.updateById(user);
 		
 	}
+	
+
+	
+	
 	
 }

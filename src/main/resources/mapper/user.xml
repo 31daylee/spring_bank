@@ -11,11 +11,11 @@
 	</insert>
 	
 	<update id="updateById">
-		update user_tb set username = #{username}, 
-						password = #{password},
+		update user_tb set fullname = #{fullname},
+						email = #{email},
+						hp = #{hp},
 						origin_file_name = #{originFileName},
-	       				upload_file_name = #{uploadFileName},
-			   			fullname = #{fullname} where id = #{id}
+	       				upload_file_name = #{uploadFileName} where id = #{id}
 	</update>
 
 	<delete id="deleteById">

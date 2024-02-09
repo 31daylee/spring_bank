@@ -14,10 +14,10 @@ spring:
       prefix: /WEB-INF/view/
       suffix: .jsp
   datasource:
-    url: jdbc:mysql://localhost:3306/mybank?serverTimeZone=Asia/Seoul
+    url: jdbc:mysql://52.79.113.104:3306/mybank
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: asd1234
+    password: Backlee99#
   
   #h2:
   #  console:
@@ -36,4 +36,7 @@ mybatis:
 logging:
   level:
     org.mybatis: DEBUG
+    
+filePath:
+  files: file:/C:/Users/pc-uefi/git/bank/upload/
     
