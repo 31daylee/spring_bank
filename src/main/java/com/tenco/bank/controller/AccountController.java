@@ -30,8 +30,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/account") // 대문
 public class AccountController {
 
-	// session 에 담긴 사용자 정보 가져오기
-	private final HttpSession session; // final 사용으로 메모리 효율 증가(가능한 final 사용)
+	private final HttpSession session; 
 	
 	@Autowired
 	private AccountService accountService;
