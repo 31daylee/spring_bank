@@ -22,7 +22,7 @@
 						  <a class="login-button" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=72919ee7c8ec0f967c858cc03998bbc3&redirect_uri=http://localhost:80/user/kakao-callback">
 						  	<img alt="" src="/images/kakaotalk_sharing_btn_small.png" style="border: 1px solid gray;" >
 						  </a> 
-						  <a href="#" class="login-button" style="border: 1px solid gray; border-radius:6px;" >
+						  <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=uCYzKaCXfDqcouuqyd0Z&state=STATE_STRING&redirect_uri=http://localhost/user/naver-callback" class="login-button" style="border: 1px solid gray; border-radius:6px;" >
 						  	<img alt="" src="/images/naver_logo.png" >
 						  </a>
 						  <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=78534889326-bd77l69smot5kpjddheeu5nsjrcbf8ea.apps.googleusercontent.com&redirect_uri=http://localhost:80/user/google-callback&response_type=code&scope=profile&email" class="login-button">
