@@ -17,7 +17,7 @@
 							<table class = table style="border:1px solid #dee2e6">
 								<thead>
 									<tr>
-										<th>${principal.username}님의계좌</th>						
+										<th>${principal.fullname}님의계좌</th>						
 										<th>계좌번호 : ${account.number}</th>						
 										<th>잔액 : ${account.formatBalance()}</th>						
 									</tr>

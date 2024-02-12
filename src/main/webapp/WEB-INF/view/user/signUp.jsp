@@ -26,7 +26,6 @@
 					    <label for="fullname">성함</label>
 					    <input type="text" name="fullname" class="form-control" placeholder="성함을 입력해주세요" id="fullname">
 					  </div>
-					  <!-- TODO: 이벤트 전파 속성- 버블링/캡처링이란? -->
 					  <div class="login-container">
 						  <a class="login-button" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=72919ee7c8ec0f967c858cc03998bbc3&redirect_uri=http://localhost:80/user/kakao-callback">
 						  	<img alt="" src="/images/kakaotalk_sharing_btn_small.png" style="border: 1px solid gray;" >

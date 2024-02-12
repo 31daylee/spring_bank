@@ -13,17 +13,17 @@
 			        <form action="/account/deposit" method="post" class=" bg-light"  style=" padding:50px">
 			            <div class="form-group">
 			                <label for="amount">입금 금액 </label> 
-			                <input type="text"    name="amount" class="form-control" placeholder="Enter amount" id="amount" value="1000">
+			                <input type="text"    name="amount" class="form-control" placeholder="입금할 금액을 입력해주세요" id="amount" >
 			            </div>
 			 			</br>
 			            <div class="form-group">
 			                <label for="dAccountNumber">입금 계좌번호 </label> 
-			                <input type="text"    name="dAccountNumber" class="form-control" placeholder="입금 계좌번호 입력" id="dAccountNumber" value="1111">
+			                <input type="text"    name="dAccountNumber" class="form-control" placeholder="입금 계좌번호를 입력해주세요" id="dAccountNumber" >
 			            </div>
 						</br>
 			            <div class="form-group">
 			                <label for="dAccountPassword">입금 계좌 비밀번호</label> 
-			                <input type="password" name="dAccountPassword" class="form-control" placeholder="입금 계좌 비밀번호 입력" id="dAccountPassword" value="1234">
+			                <input type="password" name="dAccountPassword" class="form-control" placeholder="입금 계좌 비밀번호를 입력해주세요" id="dAccountPassword">
 			            </div>
 						 </br>
 			            <button type="submit" class="btn btn-primary">입금</button>
