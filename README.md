@@ -4,8 +4,9 @@
 </p>
 </br>
 
-## 프로젝트 소개
-My Bank 은행 서비스 개발
+## 💰 프로젝트 소개
+###  My Bank 은행 서비스 개발
+#### >> Springboot, Jsp, MyBatis 를 활용한 개인 프로젝트
 <br>
 
 ## 📚기술스택
@@ -31,11 +32,13 @@ My Bank 은행 서비스 개발
 
 <br>
 
-## 🌟프로젝트 페이지 소개
-![image](https://github.com/31daylee/spring_bank/assets/136422529/ed89049a-c545-4cfb-975b-41b0e5dc277f)
+## 🎞 프로젝트 페이지 소개
+<p align="center">
+<img src="https://github.com/31daylee/spring_bank/assets/136422529/ed89049a-c545-4cfb-975b-41b0e5dc277f" width="700" height="500">
+</p>
 
 
-## 🌝프로젝트 주요 기능 소개 
+## ⚙ 프로젝트 주요 기능 소개 
 - 회원가입
 - 로그인
 - 소셜 로그인 (카카오, 네이버, 구글)
